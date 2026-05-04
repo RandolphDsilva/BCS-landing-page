@@ -120,8 +120,16 @@ export default function SponsorsSection() {
           />
         ) : visible.length === 0 ? (
           <EmptyState
-            title="No featured sponsors yet"
-            body="Featured supporters will appear here once they are published."
+            title={
+              filter === "all"
+                ? "No featured sponsors yet"
+                : "No featured sponsors match this filter"
+            }
+            body={
+              filter === "all"
+                ? "Featured supporters will appear here once they are published."
+                : "Try another tag, or view the full directory to see every supporter."
+            }
             testId="sponsors-empty"
           />
         ) : (

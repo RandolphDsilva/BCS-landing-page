@@ -4,13 +4,16 @@
  */
 
 // Strip spaces, brackets, dashes, plus signs, dots — digits only.
-// If the number is 10 digits we assume India (+91). If it already has a country
-// code (11–15 digits) we keep it as-is.
+// Normalisation for Indian numbers:
+//   - 10 digits            -> "91" + digits  (mobile without country code)
+//   - 11 digits + leading 0 -> "91" + digits.slice(1)  (landline trunk prefix)
+//   - else                  -> return digits as-is (assume already international)
 export function cleanPhone(raw) {
   if (!raw) return "";
   const digits = String(raw).replace(/\D+/g, "");
   if (!digits) return "";
   if (digits.length === 10) return `91${digits}`;
+  if (digits.length === 11 && digits.startsWith("0")) return `91${digits.slice(1)}`;
   return digits;
 }
 
