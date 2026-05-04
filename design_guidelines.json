@@ -1,0 +1,100 @@
+{
+  "theme": "Organic & Earthy",
+  "archetype": "1",
+  "mode": "light",
+  "color_palette": {
+    "primary": {
+      "DEFAULT": "#7A1F2B",
+      "hover": "#5C1720",
+      "light": "#F2E9EB",
+      "description": "Deep Burgundy - Classic, warm, Catholic-community feel. Used for primary CTAs and key headings."
+    },
+    "accent": {
+      "DEFAULT": "#B8860B",
+      "hover": "#997009",
+      "light": "#F8F3E6",
+      "description": "Muted Gold - Used for badges, subtle accents, thin rules, and active states."
+    },
+    "background": {
+      "app": "#FDFBF7",
+      "card": "#FFFFFF",
+      "alt": "#F5EFE6",
+      "description": "Warm Ivory/Cream backgrounds for a comfortable, non-sterile feel."
+    },
+    "text": {
+      "primary": "#2D2A26",
+      "secondary": "#5C5A56",
+      "muted": "#8A8782",
+      "inverse": "#FFFFFF"
+    },
+    "border": {
+      "DEFAULT": "#E8E2D9",
+      "focus": "#7A1F2B"
+    }
+  },
+  "typography": {
+    "heading_font": "Fraunces",
+    "body_font": "Manrope",
+    "rationale": "Fraunces offers a warm, dignified, and editorial serif that evokes a sense of heritage and civic duty, perfect for a Catholic Sabha. Manrope is a highly legible, clean humanist sans that balances the serif without feeling too sterile or 'tech-like'.",
+    "scales": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none",
+      "h2": "text-3xl sm:text-4xl tracking-tight leading-tight",
+      "h3": "text-xl sm:text-2xl font-medium",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm leading-normal",
+      "badge": "text-xs font-semibold tracking-wider uppercase"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#7A1F2B] text-white hover:bg-[#5C1720] rounded-lg px-6 py-3 font-medium transition-colors shadow-sm",
+      "secondary_outline": "bg-transparent border border-[#7A1F2B] text-[#7A1F2B] hover:bg-[#F2E9EB] rounded-lg px-6 py-3 font-medium transition-colors",
+      "ghost_icon": "bg-transparent text-[#5C5A56] hover:text-[#7A1F2B] hover:bg-[#F2E9EB] p-2 rounded-full transition-colors"
+    },
+    "cards": {
+      "container": "bg-white border border-[#E8E2D9] rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
+      "image_placeholder": "w-16 h-16 rounded bg-[#F5EFE6] flex items-center justify-center text-[#B8860B]",
+      "badges": {
+        "category": "bg-[#F8F3E6] text-[#B8860B] border border-[#E8D9B4] px-2.5 py-0.5 rounded-full text-xs font-semibold",
+        "souvenir_page": "bg-[#F2E9EB] text-[#7A1F2B] px-2.5 py-0.5 rounded-md text-xs font-semibold"
+      }
+    },
+    "filters": {
+      "chip_default": "px-4 py-2 rounded-full border border-[#E8E2D9] text-[#5C5A56] hover:border-[#B8860B] hover:bg-[#F8F3E6] transition-colors text-sm font-medium cursor-pointer",
+      "chip_active": "px-4 py-2 rounded-full bg-[#7A1F2B] text-white border border-[#7A1F2B] shadow-sm text-sm font-medium cursor-pointer"
+    },
+    "navbar": {
+      "container": "sticky top-0 z-50 w-full bg-[#FDFBF7]/90 backdrop-blur-md border-b border-[#E8E2D9]",
+      "wordmark": "font-heading font-semibold text-xl text-[#7A1F2B] flex items-center gap-2"
+    }
+  },
+  "layout": {
+    "spacing_scale": "Tailwind default scale (p-4, p-6, p-8, p-12). Use generous padding (py-20 to py-24) for main sections to let content breathe.",
+    "hero_section": "Asymmetric layout. Left side: Warm, left-aligned typography (H1 + subtitle), primary CTA, and a subtle horizontal gold rule (#B8860B) separating the title and description. Right side: A high-quality, warm-toned image of the community or church interior, slightly offset with a soft rounded edge or framed within a gentle arch (radius).",
+    "grid_sponsors": "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6",
+    "accessibility": "Ensure #7A1F2B (Burgundy) has at least 4.5:1 contrast against #FDFBF7 (Ivory). It easily passes. Use text-shadow if placing white text over images."
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1663321231228-2625873fbdcd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwyfHxjaHVyY2glMjBpbnRlcmlvciUyMHdhcm0lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzc3ODgzMDg4fDA&ixlib=rb-4.1.0&q=85",
+        "category": "hero",
+        "description": "Warm interior of a church with rows of chairs. Perfect for the hero section background or right-side visual."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1704624763246-4ea8540e6e19?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwyfHxjaHVyY2glMjBjYW5kbGVzJTIwd2FybSUyMGxpZ2h0aW5nfGVufDB8fHx8MTc3Nzg4MzA4MXww&ixlib=rb-4.1.0&q=85",
+        "category": "accent",
+        "description": "A row of lit candles sitting on top of a table. Good for a decorative image break or footer background with a heavy dark overlay."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install Fraunces and Manrope fonts.",
+    "Do NOT use Shadcn Card components for the sponsor cards; build them with raw Tailwind HTML divs to perfectly match the defined border, ivory hover states, and spacing in this spec.",
+    "Use Lucide icons for the Call, WhatsApp, Email, Website, and Souvenir (book/file) actions.",
+    "Ensure the hero section uses the warm ivory background (#FDFBF7) and not pure white.",
+    "Add 'data-testid' to all interactive elements, particularly filter chips and sponsor card action buttons.",
+    "Do NOT use glassmorphism except for the subtle blur on the sticky navbar. Keep surfaces solid and earthy.",
+    "Ensure responsive card grid matches specs: 1 col mobile, 2 tablet, 4 desktop."
+  ]
+}
