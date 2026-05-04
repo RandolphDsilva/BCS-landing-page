@@ -1,0 +1,43 @@
+{
+  "summary": "Frontend-only E2E test of the Bombay Catholic Sabha sponsors landing page using live Supabase. All 16 listed acceptance criteria were exercised. Home renders navbar/hero/sponsors/about/footer; 8 featured cards render with title, tag badge, souvenir page badge, short details and action buttons; filter chips work; View-all navigates to /sponsors; directory shows 61 rows with working search and tag filters; PDF.js viewer URL pattern is correct and viewer.html returns 200; WhatsApp / tel / mailto / website hrefs are well-formed; responsive grid is 4/2/1 cols at desktop/tablet/mobile; hero image loads from Unsplash CDN; external links use target=_blank rel='noopener noreferrer'.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "SponsorsSection (home featured grid)",
+        "issue": "Selecting the 'Best Wishes' filter chip on the home featured grid yields 0 cards because none of the 8 fetched featured rows have tag='Best Wishes'. The empty state then says 'No featured sponsors yet' which is misleading after a user-applied filter.",
+        "selector": "[data-testid='filter-chip-Best Wishes']",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Phone -> tel:/WhatsApp link generation for Indian landlines",
+        "issue": "cleanPhone() treats 11-digit numbers as already-internationalized. A landline entered as '022 2414 6320' becomes '02224146320' (11 digits, leading 0 trunk prefix) and is used as-is, producing tel:+02224146320 and https://wa.me/02224146320 which are invalid international formats. Recommend: if input has 11 digits and starts with 0, drop the leading 0 and prefix with country code (91).",
+        "affected_selectors": ["[data-testid='sponsor-action-call']", "[data-testid='sponsor-action-whatsapp']"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "(LOW) Improve empty-state copy in SponsorsSection when a filter yields 0 of the fetched featured rows (e.g. 'No featured sponsors match this filter').",
+    "(LOW) Harden cleanPhone() to handle 11-digit numbers beginning with '0' (Indian trunk prefix) so call/WhatsApp links produced for landlines are valid international format."
+  ],
+  "critical_code_review_comments": [
+    "cleanPhone() in /app/frontend/src/lib/utils.js: 11-digit pass-through assumes the number already has country code; this is incorrect for Indian landlines like 022xxxxxxxx where leading 0 should be stripped and 91 prefixed.",
+    "Best Wishes filter on home produces a misleading empty state; consider deriving available filter options from fetched featured set or showing tag-aware empty copy.",
+    "Files are all small and well-scoped (<160 LOC), good separation of concerns. data-testid coverage is thorough across interactive elements."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "100% (16/16 acceptance criteria pass; 2 LOW-severity polish items)"},
+  "test_credentials": "n/a",
+  "seed_data_creation": "None — used live Supabase data (61 published rows, 8 featured) as instructed.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "All flows verified against preview URL https://27a4f8dc-1b3d-4ae8-a0b5-8ac260a0085b.preview.emergentagent.com. Featured grid returned exactly 8 cards; directory returned 61. Confirmed counts per tag in directory: Commercial Ad=5, Best Wishes=8, Best Compliments=48 (total 61). Confirmed PDF viewer URL pattern /pdfjs/web/viewer.html?file=<encoded>#page=N with file decoded to https://ksqdzsgjwixyugddkcfu.supabase.co/storage/v1/object/public/PDFs/Souvenir/sabha%20Day%202026_compressed.pdf and viewer returned HTTP 200. Hero image loads from images.unsplash.com (naturalWidth=5800).",
+  "rca_of_the_issue": "Phone-link issue RCA: lib/utils.js cleanPhone() branches only on length===10 (prefix 91) else returns digits as-is. An 11-digit number with leading 0 (Indian trunk prefix) is not normalized. Mitigation: add `if (digits.length === 11 && digits.startsWith('0')) return '91' + digits.slice(1);` before the final return."
+}
